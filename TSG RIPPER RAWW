@@ -1,0 +1,26 @@
+-- by ArchivesXen0 made open source by ArchivesXen0
+local Player = game.Players.LocalPlayer
+local inventory = Player:FindFirstChild("Backpack")
+
+local function duplicateBluesteel()
+    local itemName = "Refined Bluesteel"
+    local itemCount = 100
+
+    if inventory then
+        for _, item in pairs(inventory:GetChildren()) do
+            if item.Name == itemName then
+                for i = 1, itemCount do
+                    local clone = item:Clone()
+                    clone.Parent = inventory
+                end
+                break -- Stop after finding and duplicating the item
+            end
+        end
+    end
+end
+
+-- Connect to a GUI button or command to call this function
+local duplicateButton = script.Parent:FindFirstChild("DuplicateButton") -- Change this to your button's path
+if duplicateButton then
+    duplicateButton.MouseButton1Click:Connect(duplicateBluesteel)
+end
